@@ -26,7 +26,7 @@ public class Book implements Borrowable{
         return isbn;
     }
 
-    public Boolean isAvailable() {
+    public boolean isAvailable() {
         return isAvailable;
     }
 
@@ -54,7 +54,11 @@ public class Book implements Borrowable{
             System.out.println(title + " was not borrowed" );
         }
         }
-
+    // Added toString method
+    @Override
+    public String toString() {
+        return "Book{title='" + title + "', author='" + author + "', isbn='" + isbn + "', available=" + isAvailable + "}";
+    }
 
 }
 

@@ -8,7 +8,7 @@ public class Student extends User {
         super(name, id); // Call User constructor to initialize name, id, and borrowedBooks
     }
 
-    // Getter for maxBooks (encapsulation)
+    // Getter for maxBooks
     public int getMaxBooks() {
         return maxBooks;
     }
@@ -28,9 +28,14 @@ public class Student extends User {
         }
     }
 
-    // Optionally override returnBook (can use parent’s implementation if no changes needed)
+    // Override returnBook
     @Override
     public void returnBook(Book book) {
         super.returnBook(book); // Use parent’s implementation
+    }
+
+    // Getter for borrowedBooks
+    public List<Book> getBorrowedBooks() {
+        return super.getBorrowedBooks(); // Access parent’s method
     }
 }

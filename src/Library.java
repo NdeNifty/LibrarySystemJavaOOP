@@ -3,33 +3,39 @@ import java.util.List;
 
 public class Library {
     private List<Book> books;
+    private List<Magazine> magazines;
     private List<User> users;
 
-    //constructor
-    public Library(){
-        this.books = new ArrayList<Book>();
-        this.users = new ArrayList<User>();
+    public Library() {
+        this.books = new ArrayList<>();
+        this.magazines = new ArrayList<>();
+        this.users = new ArrayList<>();
     }
 
-    //methods to manage books and users
-    public void addBook(Book book){
+    public void addBook(Book book) {
         books.add(book);
         System.out.println("Added: " + book.getTitle());
-
     }
-    public void addUser(User user){
+
+    public void addMagazine(Magazine magazine) {
+        magazines.add(magazine);
+        System.out.println("Added: " + magazine.getTitle());
+    }
+
+    public void addUser(User user) {
         users.add(user);
-        System.out.println("Added new user" + user.getName());
+        System.out.println("Added user: " + user.getName());
     }
 
-    public Book findBookByIsbn(String isbn){
-        for (Book book: books){
+    public Book findBookByIsbn(String isbn) {
+        for (Book book : books) {
             if (book.getIsbn().equals(isbn)) {
                 return book;
             }
         }
         return null;
     }
+
     public User findUserById(int id) {
         for (User user : users) {
             if (user.getId() == id) {
@@ -39,12 +45,17 @@ public class Library {
         return null;
     }
 
-    public void displayBooks(){
-        System.out.println("Library Books : ");
-        for (Book book: books){
+    public void displayBooks() {
+        System.out.println("Library Books:");
+        for (Book book : books) {
             System.out.println(book);
         }
     }
 
-
+    public void displayMagazines() {
+        System.out.println("Magazines in Library:");
+        for (Magazine magazine : magazines) {
+            System.out.println(magazine);
+        }
+    }
 }

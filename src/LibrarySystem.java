@@ -1,28 +1,53 @@
 public class LibrarySystem {
-    public static void main (String[] args){
-        //Create Library
+    public static void main(String[] args) {
+        // Create library
         Library library = new Library();
 
-        //create books for Library
+        // Create books
         Book book1 = new Book("1984", "George Orwell", "123456789");
         Book book2 = new Book("The Hobbit", "J.R.R. Tolkien", "987654321");
 
-        //add books to library
+        // Create magazines
+        Magazine magazine1 = new Magazine("Jeunes", "000232", "12/03/2025");
+
+        // Add items to library
         library.addBook(book1);
         library.addBook(book2);
+        library.addMagazine(magazine1);
 
-        //create user
-        User user1 = new User("Shafic", 1);
-        library.addUser(user1);
+        // Create student
+        Student student = new Student("Alice", 1);
+        library.addUser(student);
 
+        // Display all items
+        System.out.println("\nInitial Library State:");
         library.displayBooks();
-        // Borrow and return books
-        user1.borrowBook(book1);
-        library.displayBooks();
-        user1.returnBook(book1);
-        library.displayBooks();
+        library.displayMagazines();
 
+        // Test borrowing
+        System.out.println("\nTesting borrowing:");
+        student.borrowBook(book1);    // Book
+        student.borrowBook(book2);    // Book
+        // student.borrowBook(magazine1); // This will fail due to Book parameter type
+
+        // Display student's borrowed books
+        System.out.println("\n" + student.getName() + "'s borrowed books:");
+        for (Book book : student.getBorrowedBooks()) {
+            System.out.println(book.getTitle());
+        }
+
+        // Display library state
+        System.out.println("\nLibrary State After Borrowing:");
+        library.displayBooks();
+        library.displayMagazines();
+
+        // Test returning
+        System.out.println("\nTesting returning:");
+        student.returnBook(book1);
+
+        // Display final library state
+        System.out.println("\nLibrary State After Returning:");
+        library.displayBooks();
+        library.displayMagazines();
     }
-
 }
-
