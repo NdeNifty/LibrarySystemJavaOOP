@@ -9,11 +9,13 @@ public class LibrarySystem {
 
         // Create magazines
         Magazine magazine1 = new Magazine("Jeunes", "000232", "12/03/2025");
+        Magazine magazine2 = new Magazine("National Geographic", "Issue 123", "2023-11");
 
         // Add items to library
-        library.addBook(book1);
-        library.addBook(book2);
-        library.addMagazine(magazine1);
+        library.addItem(book1);
+        library.addItem(book2);
+        library.addItem(magazine1);
+        library.addItem(magazine2);
 
         // Create student
         Student student = new Student("Alice", 1);
@@ -21,33 +23,32 @@ public class LibrarySystem {
 
         // Display all items
         System.out.println("\nInitial Library State:");
-        library.displayBooks();
-        library.displayMagazines();
+        library.displayItems();
 
         // Test borrowing
         System.out.println("\nTesting borrowing:");
-        student.borrowBook(book1);    // Book
-        student.borrowBook(book2);    // Book
-        // student.borrowBook(magazine1); // This will fail due to Book parameter type
+        student.borrowItem(book1);    // Book
+        student.borrowItem(magazine1); // Magazine
+        student.borrowItem(book2);    // Book
+        student.borrowItem(magazine2); // Should fail (maxItems = 3)
 
-        // Display student's borrowed books
-        System.out.println("\n" + student.getName() + "'s borrowed books:");
-        for (Book book : student.getBorrowedBooks()) {
-            System.out.println(book.getTitle());
+        // Display student's borrowed items
+        System.out.println("\n" + student.getName() + "'s borrowed items:");
+        for (Borrowable item : student.getBorrowedItems()) {
+            System.out.println(item);
         }
 
         // Display library state
         System.out.println("\nLibrary State After Borrowing:");
-        library.displayBooks();
-        library.displayMagazines();
+        library.displayItems();
 
         // Test returning
         System.out.println("\nTesting returning:");
-        student.returnBook(book1);
+        student.returnItem(book1);
+        student.returnItem(magazine1);
 
         // Display final library state
         System.out.println("\nLibrary State After Returning:");
-        library.displayBooks();
-        library.displayMagazines();
+        library.displayItems();
     }
 }

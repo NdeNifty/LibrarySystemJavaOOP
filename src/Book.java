@@ -7,9 +7,9 @@ public class Book implements Borrowable{
 
     //constructor
     public Book(String title, String author, String isbn){
-        this.author = author;
-        this.title = title;
-        this.isbn = isbn;
+        setTitle(title); // Use setter for validation
+        setAuthor(author);
+        setIsbn(isbn);   // Use setter for validation
         this.isAvailable = true;
 
     }
@@ -29,7 +29,25 @@ public class Book implements Borrowable{
     public boolean isAvailable() {
         return isAvailable;
     }
+    public void setTitle(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be null or empty");
+        }
+        this.title = title;
+    }
 
+    public void setAuthor(String author) {
+        if (author == null || author.trim().isEmpty()) {
+            throw new IllegalArgumentException("Author cannot be null or empty");
+        }
+        this.author = author;
+    }
+    public void setIsbn(String isbn) {
+        if (isbn == null || isbn.trim().isEmpty()) {
+            throw new IllegalArgumentException("ISBN cannot be null or empty");
+        }
+        this.isbn = isbn;
+    }
 
 
 // Borrowable interface methods

@@ -1,7 +1,7 @@
 import java.util.List;
 
 public class Student extends User {
-    private int maxBooks = 3;
+    private int maxItems = 3;
 
     // Constructor
     public Student(String name, int id) {
@@ -10,32 +10,29 @@ public class Student extends User {
 
     // Getter for maxBooks
     public int getMaxBooks() {
-        return maxBooks;
+        return maxItems;
     }
 
     // Override borrowBook to enforce maxBooks limit
     @Override
-    public void borrowBook(Book book) {
-        if (getBorrowedBooks().size() < maxBooks) {
-            if (book.isAvailable()) {
-                book.borrow(this);
-                getBorrowedBooks().add(book); // Add to borrowedBooks after successful borrow
+    public void borrowItem(Borrowable item) {
+        if (getBorrowedItems().size() < maxItems) {
+            if (item.isAvailable()) {
+                item.borrow(this);
+                getBorrowedItems().add(item); // Add to borrowedBooks after successful borrow
             } else {
-                System.out.println(book.getTitle() + " is not available");
+                System.out.println(item.toString() + " is not available");
             }
         } else {
-            System.out.println(getName() + " cannot borrow more than " + maxBooks + " books");
+            System.out.println(getName() + " cannot borrow more than " + maxItems + " books");
         }
     }
 
     // Override returnBook
     @Override
-    public void returnBook(Book book) {
-        super.returnBook(book); // Use parent’s implementation
+    public void returnItem(Borrowable item) {
+        super.returnItem(item); // Use parent’s implementation
     }
 
-    // Getter for borrowedBooks
-    public List<Book> getBorrowedBooks() {
-        return super.getBorrowedBooks(); // Access parent’s method
-    }
+
 }

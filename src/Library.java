@@ -2,24 +2,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
-    private List<Book> books;
-    private List<Magazine> magazines;
+    private List<Borrowable> items;
     private List<User> users;
 
     public Library() {
-        this.books = new ArrayList<>();
-        this.magazines = new ArrayList<>();
+        this.items = new ArrayList<>();
         this.users = new ArrayList<>();
     }
 
-    public void addBook(Book book) {
-        books.add(book);
-        System.out.println("Added: " + book.getTitle());
-    }
-
-    public void addMagazine(Magazine magazine) {
-        magazines.add(magazine);
-        System.out.println("Added: " + magazine.getTitle());
+    public void addItem(Borrowable item) {
+        items.add(item);
+        System.out.println("Added: " + item);
     }
 
     public void addUser(User user) {
@@ -28,8 +21,8 @@ public class Library {
     }
 
     public Book findBookByIsbn(String isbn) {
-        for (Book book : books) {
-            if (book.getIsbn().equals(isbn)) {
+        for (Borrowable item : items) {
+            if (item instanceof Book book && book.getIsbn().equals(isbn)) {
                 return book;
             }
         }
@@ -45,17 +38,10 @@ public class Library {
         return null;
     }
 
-    public void displayBooks() {
-        System.out.println("Library Books:");
-        for (Book book : books) {
-            System.out.println(book);
-        }
-    }
-
-    public void displayMagazines() {
-        System.out.println("Magazines in Library:");
-        for (Magazine magazine : magazines) {
-            System.out.println(magazine);
+    public void displayItems() {
+        System.out.println("Library Items:");
+        for (Borrowable item : items) {
+            System.out.println(item);
         }
     }
 }
